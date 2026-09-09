@@ -52,50 +52,54 @@ class LetraPDFGenerator:
         width, height = letter  # 612 x 792 pt
         center_x = width / 2.0
 
-        # Compute line counts for auto-fit
-        total_items = 0
+        # Collect all renderable items for width and height calculations
+        items = []
         for sec in song.sections:
             if sec.heading:
-                total_items += 1
-            total_items += len(sec.lines)
+                items.append(("Economica-Bold", sec.heading.strip()))
+            for line in sec.lines:
+                clean_line = line.strip()
+                if clean_line:
+                    items.append(("Economica-Regular", clean_line))
+
+        total_items = len(items)
         total_gaps = max(1, len(song.sections))
 
         # Dynamic Auto-Fit calculation:
-        # Standard: 30 lines -> font 13pt, line_height ~17.18pt, gap ~34.36pt (2*line_height)
-        # We target fitting cleanly between top_margin and bottom_margin:
-        available_h = height - 120.0  # reserve ~120pt for title and baseline margins
+        # Fills the majority of the page comfortably while respecting margins
+        available_h = height - 150.0
+        units = total_items + (total_gaps * 0.45)
+        ideal_line_height = available_h / units
+        target_font = ideal_line_height / 1.38
+        target_font = min(15.5, max(11.5, target_font))
 
-        # Total units: each line is 1 unit, each gap between sections is 1.0 to 1.5 units
-        total_units = total_items + (total_gaps * 1.1)
+        # Horizontal safety check: ensure no line breaks or exceeds printable width
+        max_allowed_w = width - 72.0  # at least 36pt (0.5 in) margin on each side
+        max_w = max(pdfmetrics.stringWidth(text, fn, target_font) for fn, text in items)
+        if max_w > max_allowed_w:
+            target_font = target_font * (max_allowed_w / max_w)
 
-        raw_line_height = available_h / total_units
-        line_height = min(17.18, max(12.5, raw_line_height))
-        section_gap = line_height * 1.4
+        font_size = round(target_font, 1)
+        line_height = font_size * 1.38
+        section_gap = line_height * 1.45
 
-        # Scale font size slightly if line height had to be reduced
-        if line_height < 14.5:
-            font_size = 11.5
-        elif line_height < 16.0:
-            font_size = 12.0
-        else:
-            font_size = 13.0
+        # Calculate total content height
+        total_content_height = (total_items * line_height) + (total_gaps * (section_gap - line_height))
 
-        # Calculate starting Y to keep content vertically balanced
-        total_content_height = (total_items * line_height) + (len(song.sections) * (section_gap - line_height))
-        # Center the block between title and bottom
-        title_y = height - 75.0
-        lyrics_start_y = title_y - 45.0
+        # Balanced vertical positioning
+        # Enhanced title font size for high visibility and calligraphic elegance
+        title_font_size = 36 if font_size >= 14.5 else 33
+        title_y = height - 68.0
+        lyrics_start_y = title_y - 54.0
 
-        # If content is short, center it nicely
         expected_bottom = lyrics_start_y - total_content_height
-        if expected_bottom > 110.0:
-            # Shift slightly downward to balance page
-            offset = min(25.0, (expected_bottom - 110.0) / 2.0)
+        if expected_bottom > 85.0:
+            offset = min(25.0, (expected_bottom - 85.0) / 2.0)
             title_y -= offset
             lyrics_start_y -= offset
 
         # 1. Draw Title
-        c.setFont("DancingScript-Bold", 26)
+        c.setFont("DancingScript-Bold", title_font_size)
         c.drawCentredString(center_x, title_y, song.title)
 
         # 2. Draw Sections and Lines
@@ -103,11 +107,12 @@ class LetraPDFGenerator:
         cur_y = lyrics_start_y
 
         for sec in song.sections:
-            # Section Heading
+            # Section Heading (Numbers, CORO:, PUENTE:, FINAL:)
             if sec.heading:
-                c.setFont("Economica-Regular", font_size)
+                c.setFont("Economica-Bold", font_size)
                 c.drawCentredString(center_x, cur_y, sec.heading.strip())
                 cur_y -= line_height
+                c.setFont("Economica-Regular", font_size)
 
             # Section Lyric Lines
             for line in sec.lines:

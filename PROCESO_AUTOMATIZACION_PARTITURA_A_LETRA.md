@@ -40,13 +40,17 @@ El objetivo de este sistema es **automatizar la conversión de partituras corale
    * Formato: **US Letter** ($612.0 \times 792.0$ puntos tipográficos / $8.5 \times 11$ pulgadas).
    * Márgenes: Superior ~72 pt, Inferior ~100 pt, Márgenes laterales simétricos.
    * Alineación: **100% Centrado horizontal** en el eje $X = 306.0$ pt.
-2. **Especificación Tipográfica:**
-   * **Título:** `DancingScript-Bold` a **26.0 pt**.
-   * **Encabezados de Sección y Letra:** `Economica-Regular` a **13.0 pt** (todo el cuerpo de letra en **MAYÚSCULAS**).
+2. **Especificación Tipográfica y Auto-Fit Dinámico:**
+   * **Título:** `DancingScript-Bold` a **26.0–28.0 pt** (escalable según densidad).
+   * **Encabezados de Sección (`1.`, `CORO:`, `PUENTE:`, etc.):** `Economica-Bold` a **11.5–15.5 pt** (negrita para jerarquía visual inmediata).
+   * **Cuerpo de Letra:** `Economica-Regular` a **11.5–15.5 pt** (todo el cuerpo de letra en **MAYÚSCULAS**).
+   * **Escalado Inteligente de Página:**
+     * En himnos de menor extensión (20 a 25 líneas), el motor escala la fuente hasta **15.5 pt** e incrementa el interlineado (~21.5 pt) para llenar armoniosamente la mayor parte de la página, evitando vacíos blancos inferiores.
+     * **Candado de Ancho Horizontal:** El algoritmo comprueba la longitud en puntos de cada verso para garantizar que ninguna línea exceda el ancho imprimible ($W \le 540$ pt) ni sufra saltos de línea involuntarios.
 3. **Métricas de Espaciado:**
-   * Interlineado estándar dentro de un bloque: **17.18 pt**.
-   * Separación entre bloques/secciones: **34.36 pt** (exactamente 1 línea en blanco).
-   * Distribución vertical calibrada para que el himno completo ocupe **exactamente 1 sola página**.
+   * Interlineado estándar: $1.38 \times \text{font\_size}$ pt.
+   * Separación entre secciones: $1.45 \times \text{line\_height}$ pt.
+   * Distribución vertical calibrada y centrada para ocupar **exactamente 1 sola página**.
 
 ---
 
@@ -101,13 +105,29 @@ Las contestaciones cantadas por voces secundarias (ecos, refuerzos, contrapuntos
      * Casilla 3 $\rightarrow$ `(VIVE EN MI CORAZÓN)`
      * Casilla 4 $\rightarrow$ `(SIEMPRE QUIERO SERLE FIEL)`
 
-### Regla 5: Estructura y Eliminación de Repeticiones Redundantes
-* En la partitura aparece `CORO FINAL` en el compás 18 para indicar la vuelta al coro antes de la coda.
-* En la hoja de letra:
-  * El coro se imprime **una sola vez** al inicio (`CORO:`).
-  * Le siguen las estrofas enumeradas (`1.`, `2.`, `3.`, `4.`).
-  * Concluye con la coda (`FINAL:`).
-* Esto garantiza concisión, máxima legibilidad y permite mantener el documento en **una página única**.
+### Regla 5: Estructura del Himno, Ubicación del Coro y Eliminación de Repeticiones
+
+#### 5.1. Regla de Oro: Ubicación del Coro según el Flujo Musical
+Cada partitura coral posee su propio orden formal, pero en la notación y en la ejecución litúrgica se deben distinguir dos grandes familias estructurales:
+
+1. **Estructura Estrofa-Coro (La Gran Mayoría de las Alabanzas):**
+   * En la partitura original, cuando termina la primera estrofa (o primer *stanza*), el coro entra inmediatamente (por ejemplo, en *Todos Alaben*, al terminar el compás 27 de la estrofa 1, el compás 28 es `CORO:`).
+   * **Directriz para la Hoja de Letra:** El bloque `CORO:` **debe ubicarse inmediatamente después de la primera estrofa (`1.`)**, y **NUNCA al final de la página** tras todas las estrofas.
+   * **Orden resultante en la hoja de letra:**
+     1. Estrofa `1.`
+     2. `CORO:`
+     3. Estrofas siguientes (`2.`, `3.`, etc.)
+     4. Coda o `FINAL:` (si existe).
+   * **Razón musical y práctica:** Refleja la secuencia real de canto que siguen los coristas (Estrofa 1 $\rightarrow$ Coro $\rightarrow$ Estrofa 2 $\rightarrow$ Estrofa 3...). Dejar el coro al fondo de la página desorienta la lectura y rompe la cronología de la alabanza.
+
+2. **Estructura con Coro Introductorio / Inicial:**
+   * Algunas partituras comienzan directamente con el Coro como tema de apertura antes de las estrofas (por ejemplo, en *Con Gozo Cantemos a Cristo*).
+   * **Directriz:** En estos casos específicos, el `CORO:` se sitúa al principio de la hoja, seguido de las estrofas (`1.`, `2.`, `3.`, `4.`).
+
+#### 5.2. Eliminación de Repeticiones Redundantes del Coro
+* Aunque en la partitura aparezcan indicaciones como `CORO FINAL`, repeticiones entre cada estrofa, o barras de repetición con `D.C.` o `D.S.`:
+  * El texto del coro se imprime **una sola vez** en la hoja de letra (inmediatamente tras la estrofa 1, o al inicio si la partitura lo abre).
+  * No se duplica el bloque del coro entre cada estrofa para mantener la concisión, máxima limpieza tipográfica y garantizar que todo el himno quepa en **exactamente 1 sola página**.
 
 ---
 

@@ -1,0 +1,54 @@
+{
+  "title": "Aleluya",
+  "author": "Absalón Núñez N.",
+  "event_info": "Coro Maranatha | Congreso 2026 | Dir. Amner Nájera | IDDV El Buen Pastor",
+  "sections": [
+    {
+      "type": "ESTROFA",
+      "heading": "1.",
+      "lines": [
+        "CON TODA LIBERTAD HOY QUIERO ALABAR,",
+        "AL QUE MURIÓ EN LA CRUZ TOMANDO MI LUGAR",
+        "(LIBERTAD, ALABAR);",
+        "CON TODA LIBERTAD HOY QUIERO ADORAR",
+        "A JESUCRISTO EL REY, VENIMOS A CANTAR."
+      ]
+    },
+    {
+      "type": "CORO",
+      "heading": "CORO:",
+      "lines": [
+        "EL CORDERO DIGNO ES DE TODA NUESTRA ADORACIÓN,",
+        "TODO LO QUE RESPIRE ALABE Y GLORIFIQUE",
+        "EL NOMBRE DE MI DIOS.",
+        "¡ALABAD A DIOS! ¡ALABAD AL REY!",
+        "HE DE ALABAR A DIOS CON HIMNOS DE LOOR,",
+        "PORQUE SÓLO ÉL ES DIGNO DE NUESTRA ADORACIÓN.",
+        "SU PUEBLO HOY UNIDO EXCLAMA A UNA VOZ:",
+        "¡ALELUYA A DIOS, A JESÚS!"
+      ]
+    },
+    {
+      "type": "ESTROFA",
+      "heading": "2.",
+      "lines": [
+        "VOCES DE JÚBILO ENTRE SU PUEBLO HAY,",
+        "RECONOCIENDO HOY SU GRAN MAJESTAD",
+        "(VOCES DE SALVACIÓN);",
+        "VOCES DE SALVACIÓN ENTRE LOS JUSTOS HAY,",
+        "PORQUE JESÚS ES REY, MORA EN ESTE LUGAR."
+      ]
+    },
+    {
+      "type": "ESTROFA",
+      "heading": "3.",
+      "lines": [
+        "ESTE ES EL DÍA QUE HIZO JEHOVÁ MI DIOS,",
+        "CON TODA DEVOCIÓN RINDO MI ADORACIÓN",
+        "(DÍA DE LIBERTAD);",
+        "DÍA DE LIBERTAD, DÍA DE SALVACIÓN,",
+        "PORQUE JESÚS ES REY, DERRAMA BENDICIÓN."
+      ]
+    }
+  ]
+}

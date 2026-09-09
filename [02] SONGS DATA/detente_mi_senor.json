@@ -1,0 +1,50 @@
+{
+  "title": "Detente Mi Señor",
+  "author": "Tradicional",
+  "event_info": "IDDV El Buen Pastor",
+  "sections": [
+    {
+      "type": "ESTROFA",
+      "heading": "1.",
+      "lines": [
+        "DETENTE MI SEÑOR, NO SIGAS TU CAMINO",
+        "LA NOCHE CERCA ESTÁ, MEJOR ENTRA Y DESCANSA",
+        "MI MORADA YA LIMPIÉ, ESPERABA ESTE DÍA",
+        "Y HOY QUE ESTÁS AQUÍ, LA PUERTA CERRARÉ",
+        "PARA QUE NUNCA MÁS TE VAYAS"
+      ]
+    },
+    {
+      "type": "CORO",
+      "heading": "CORO:",
+      "lines": [
+        "YA NO TOQUES LA PUERTA MI SEÑOR, PORQUE YA ESTÁ ABIERTA",
+        "A LA HORA QUE QUIERAS TÚ PUEDES ENTRAR, Y HACERLA TU MORADA",
+        "MIENTRAS YO CON MIS LÁGRIMAS VOY A LAVAR ESOS PIES AMADOS",
+        "Y A SECARLOS CON MIS CABELLOS HASTA QUE TÚ DECIDAS PERDONARME"
+      ]
+    },
+    {
+      "type": "ESTROFA",
+      "heading": "2.",
+      "lines": [
+        "A LA CIMA DE TU ALTAR, QUIERO QUE TÚ ME LLEVES",
+        "Y ME DEJES SENTIR, EL FUEGO DE TU PRESENCIA",
+        "MUCHO TIEMPO ESPERÉ, CON GOZO ESTE DÍA",
+        "TOCA MI CORAZÓN, LLENA MI SER DE TI",
+        "EN MI VIDA TE NECESITO"
+      ]
+    },
+    {
+      "type": "ESTROFA",
+      "heading": "3.",
+      "lines": [
+        "A TRAVÉS DE MI ORACIÓN, QUIERO EXPRESAR CON LLANTO",
+        "NECESITO DE TI, EN MI VIDA CADA DÍA",
+        "NUNCA SUELTES MI SEÑOR, MI MANO DE LA TUYA",
+        "CAMINEMOS SIEMPRE ASÍ, Y NO ME PERDERÉ",
+        "EN LOS PLACERES DE LA VIDA"
+      ]
+    }
+  ]
+}
