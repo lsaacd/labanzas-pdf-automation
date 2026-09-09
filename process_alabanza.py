@@ -60,6 +60,7 @@ def main():
     parser = argparse.ArgumentParser(description="Alabanzas Choral to Lyrics Automation Runner")
     parser.add_argument("--song", type=str, help="Name or prefix of the song to process (e.g. 'yo_soy_hijo_de_dios')")
     parser.add_argument("--all", action="store_true", help="Process all songs in [02] SONGS DATA/")
+    parser.add_argument("--compile", action="store_true", help="Compile unified Cancionero PDF (Portada + Índice + 9 Alabanzas)")
     parser.add_argument("--list", action="store_true", help="List all available songs")
     args = parser.parse_args()
 
@@ -81,8 +82,13 @@ def main():
                 print(f"  - {f}")
         return
 
+    if args.compile and not args.song and not args.all:
+        from compile_himnario import compile_maranatha_songbook
+        compile_maranatha_songbook()
+        return
+
     songs_to_process = []
-    if args.all or (not args.song and not args.all and not args.list):
+    if args.all or (not args.song and not args.all and not args.list and not args.compile):
         for f in os.listdir(songs_dir):
             if f.endswith(".json"):
                 songs_to_process.append(os.path.join(songs_dir, f))
@@ -102,6 +108,11 @@ def main():
         process_song_file(song_file, output_dir)
 
     print("\nProcesamiento completado con éxito.")
+
+    if args.compile:
+        from compile_himnario import compile_maranatha_songbook
+        print("\nCompilando Cancionero...")
+        compile_maranatha_songbook()
 
 
 if __name__ == "__main__":

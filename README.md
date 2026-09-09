@@ -7,39 +7,43 @@ Este proyecto automatiza la conversión de partituras corales (arreglos SATB en 
 
 ## 📂 Estructura Organizada del Proyecto
 
-El espacio de trabajo sigue el estándar numérico institucional de carpetas de IDDV El Buen Pastor:
-
-```
+El espacio de trabajo sigue el estándar numérico institucional de carpetas de IDDV El Bu```
 [07] PDF ALABANZAS AUTOMATION/
 ├── [01] INPUT PARTITURAS/               # Entrada: Partituras originales (.pdf)
+│   ├── Coro Maranatha - El ADN del Reino (Congreso 2026).pdf
 │   ├── Con Gozo Cantemos a Cristo Partitura.pdf
 │   └── Yo Soy Hijo de Dios Partitura.pdf
 │
-├── [02] SONGS DATA/                     # Datos estructurados en formato JSON
-│   ├── con_gozo_cantemos_a_cristo.json
-│   └── yo_soy_hijo_de_dios.json
+├── [02] SONGS DATA/                     # Datos estructurados en formato JSON (9 del cancionero + extras)
+│   ├── a_tu_nombre_gloria.json
+│   ├── al_santo_senor.json
+│   ├── aleluya.json
+│   ├── como_no_agradecer.json
+│   ├── elias.json
+│   ├── estar_siempre_con_el.json
+│   ├── cambiaste_mi_vida.json
+│   ├── no_te_imaginas_cuanto_te_amo.json
+│   ├── viene_pronto.json
+│   └── ...
 │
 ├── [03] OUTPUT LETRAS/                  # Salida organizada por formato
-│   ├── [01] PDF/                        # PDFs finales listos para imprimir (1 página)
-│   │   ├── Con Gozo Cantemos a Cristo Letra.pdf
-│   │   └── Yo Soy Hijo de Dios Letra.pdf
+│   ├── [01] PDF/                        # PDFs finales listos para imprimir (1 página) y Cancionero Compilado
+│   │   ├── Coro Maranatha - El ADN del Reino (Letras).pdf   # Cancionero completo (11 págs: Portada + Índice + 9 Alabanzas)
+│   │   ├── A Tu Nombre Gloria Letra.pdf
+│   │   └── ...
 │   ├── [02] MARKDOWN/                   # Cancionero digital y repositorio
-│   │   ├── Con Gozo Cantemos a Cristo Letra.md
-│   │   └── Yo Soy Hijo de Dios Letra.md
-│   ├── [03] TEXT/                       # Texto plano para EasyWorship / ProPresenter
-│   │   ├── Con Gozo Cantemos a Cristo Letra.txt
-│   │   └── Yo Soy Hijo de Dios Letra.txt
+│   ├── [03] TEXT/                       # Texto plano para proyección (EasyWorship / ProPresenter)
 │   └── [04] PREVIEWS/                   # Renders PNG de alta resolución (150 DPI)
-│       ├── Con Gozo Cantemos a Cristo Letra_preview.png
-│       └── Yo Soy Hijo de Dios Letra_preview.png
 │
-├── [04] ASSETS/                         # Recursos oficiales y fuentes
-│   └── fonts/
-│       ├── DancingScript-Bold.ttf       # Tipografía para títulos
-│       ├── Economica-Regular.ttf        # Tipografía para letras
-│       └── Economica-Bold.ttf           # Variante negrita
+├── [04] ASSETS/                         # Recursos oficiales y tipografías
+│   ├── fonts/
+│   │   ├── DancingScript-Bold.ttf       # Tipografía caligráfica para títulos de alabanza
+│   │   ├── Economica-Regular.ttf        # Tipografía condensada para estrofas y coros
+│   │   ├── Economica-Bold.ttf           # Variante negrita para encabezados
+│   │   └── OpenSauceOne-Regular.ttf     # Tipografía del Índice de Alabanzas
+│   └── og_ebp.svg                       # Escudo oficial vectorial IDDV El Buen Pastor
 │
-├── [05] DOCS/                           # Documentación técnica y reglas
+├── [05] DOCS/                           # Documentación técnica, reglas musicales y arquitectura
 │   └── PROCESO_AUTOMATIZACION_PARTITURA_A_LETRA.md
 │
 ├── [06] TOOLS & TESTS/                  # Scripts de inspección, análisis y pruebas
@@ -53,7 +57,9 @@ El espacio de trabajo sigue el estándar numérico institucional de carpetas de 
 │   ├── pdf_generator.py                 # Motor ReportLab con Auto-Fit a 1 página
 │   └── exporter.py                      # Exportador a JSON, MD y TXT
 │
-├── process_alabanza.py                  # CLI Automatizador para procesar canciones
+├── compile_himnario.py                  # Ensamblador de cancionero (Vectoriza portada, corrige índice y unifica tamaño)
+├── process_alabanza.py                  # CLI Automatizador para procesar canciones y compilar
+├── requirements.txt                     # Dependencias Python
 └── README.md                            # Guía de uso del repositorio
 ```
 
@@ -66,16 +72,22 @@ El espacio de trabajo sigue el estándar numérico institucional de carpetas de 
 python process_alabanza.py --all
 ```
 
-### 2. Procesar una canción específica:
+### 2. Procesar todas las canciones y compilar el cancionero completo (11 págs):
+```bash
+python process_alabanza.py --all --compile
+```
+*(O ejecutar directamente `python compile_himnario.py`)*
+
+### 3. Procesar una canción específica:
 ```bash
 python process_alabanza.py --song yo_soy_hijo_de_dios
 ```
 o
 ```bash
-python process_alabanza.py --song con_gozo
+python process_alabanza.py --song viene_pronto
 ```
 
-### 3. Listar canciones disponibles:
+### 4. Listar canciones disponibles:
 ```bash
 python process_alabanza.py --list
 ```
