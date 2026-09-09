@@ -5,8 +5,10 @@ followed by the 9 converted 1-page lyric sheets in exact index order.
 """
 
 import os
-import re
-import fitz  # PyMuPDF
+try:
+    import pymupdf as fitz  # PyMuPDF
+except ImportError:
+    import fitz
 
 def prepare_cover_with_vector_logo(partitura_doc, svg_path):
     """

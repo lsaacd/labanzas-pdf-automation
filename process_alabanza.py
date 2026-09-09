@@ -7,7 +7,11 @@ import os
 import sys
 import json
 import argparse
-import fitz
+try:
+    import pymupdf as fitz
+except ImportError:
+    import fitz
+
 
 from src.models import Song
 from src.pdf_generator import LetraPDFGenerator
