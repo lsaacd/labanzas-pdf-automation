@@ -7,7 +7,10 @@ from reportlab.pdfbase.ttfonts import TTFont
 
 # Register Google Fonts
 script_dir = os.path.dirname(os.path.abspath(__file__))
-fonts_dir = os.path.join(script_dir, 'fonts')
+base_dir = os.path.dirname(script_dir)
+fonts_dir = os.path.join(base_dir, '[04] ASSETS', 'fonts')
+if not os.path.exists(fonts_dir):
+    fonts_dir = os.path.join(script_dir, 'fonts')
 
 pdfmetrics.registerFont(TTFont('DancingScript-Bold', os.path.join(fonts_dir, 'DancingScript-Bold.ttf')))
 pdfmetrics.registerFont(TTFont('Economica-Regular', os.path.join(fonts_dir, 'Economica-Regular.ttf')))

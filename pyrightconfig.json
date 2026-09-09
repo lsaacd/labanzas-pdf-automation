@@ -5,5 +5,6 @@
     ".venv/Lib/site-packages",
     "C:/Users/isaac/AppData/Local/Programs/Python/Python312/Lib/site-packages"
   ],
-  "reportMissingImports": "none"
+  "reportMissingImports": "none",
+  "reportMissingTypeStubs": false
 }
