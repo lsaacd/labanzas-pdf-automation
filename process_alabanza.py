@@ -8,9 +8,9 @@ import sys
 import json
 import argparse
 try:
-    import pymupdf as fitz
+    import pymupdf as fitz  # type: ignore
 except ImportError:
-    import fitz
+    import fitz  # type: ignore
 
 
 from src.models import Song
